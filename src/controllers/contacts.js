@@ -62,6 +62,10 @@ export const deleteContactController = async (req, res, next) => {
   const userId = req.user._id;
   const { contactId } = req.params;
 
+  if (!userId) {
+    throw createHttpError(400, 'User is not authenticated');
+  }
+
   const contact = await deleteContact(contactId, userId);
 
   if (!contact) {
