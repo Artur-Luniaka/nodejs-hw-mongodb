@@ -1,17 +1,14 @@
 import { model, Schema } from 'mongoose';
+import { CONTACT_TYPES } from '../../constants/index.js';
 
 const contactsSchema = new Schema(
   {
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'users',
-    },
     name: {
       type: String,
       required: true,
     },
     phoneNumber: {
-      type: String,
+      type: Number,
       required: true,
     },
     email: {
@@ -23,13 +20,20 @@ const contactsSchema = new Schema(
     },
     contactType: {
       type: String,
-      enum: ['work', 'home', 'personal'],
+      enum: CONTACT_TYPES,
       required: true,
       default: 'personal',
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+    },
     photo: { type: String },
   },
-  { timestamps: true, versionKey: false },
+  {
+    timestamps: true,
+    versionKey: false,
+  },
 );
 
 export const ContactsCollection = model('contacts', contactsSchema);

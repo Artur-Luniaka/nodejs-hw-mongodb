@@ -1,7 +1,7 @@
 import cloudinary from 'cloudinary';
-import { CLOUDINARY } from '../constans/index.js';
-import { getEnvVar } from './getEnvVar.js';
 import fs from 'node:fs/promises';
+import { getEnvVar } from './getEnvVar.js';
+import { CLOUDINARY } from '../constants/index.js';
 
 cloudinary.v2.config({
   secure: true,
